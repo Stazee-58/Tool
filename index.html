@@ -2,265 +2,215 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>AI Tài Xỉu • Liquid Glass</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sảnh sexy</title>
 <style>
-:root{
-  --bg1:#0a0f2c;
-  --bg2:#0b3c2e;
-  --glass:rgba(255,255,255,.18);
-  --stroke:rgba(255,255,255,.25);
-  --txt:#eef2ff;
-  --mut:rgba(255,255,255,.65);
-  --tai:#3ddc97;
-  --xiu:#7c83ff;
-  --warn:#ffcc66;
-  --bad:#ff6b6b;
+body {
+  background: #0b1220;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
-
-*{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,Inter,system-ui}
-body{
-  margin:0;
-  background:
-    radial-gradient(120% 80% at 20% -10%,#1a3cff44,transparent 40%),
-    radial-gradient(100% 70% at 90% 10%,#00ffb344,transparent 45%),
-    linear-gradient(180deg,var(--bg1),var(--bg2));
-  color:var(--txt);
-  min-height:100vh;
+.container {
+  background: #1a1f2c;
+  padding: 25px 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.5);
+  text-align: center;
+  width: 320px;
 }
-
-.app{
-  max-width:420px;
-  margin:auto;
-  padding:14px;
+h2 {
+  color: #00FFB2;
+  margin-bottom: 20px;
 }
-
-.header{
-  text-align:center;
-  margin-bottom:14px;
+select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background: #272c3c;
+  color: white;
+  font-size: 16px;
+  margin-bottom: 15px;
 }
-.header h1{
-  margin:0;
-  font-size:20px;
-  font-weight:600;
+button {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 5px;
+  cursor: pointer;
+  transition: 0.2s;
 }
-.header p{
-  margin:4px 0 0;
-  font-size:12px;
-  color:var(--mut);
+button:hover {
+  transform: scale(1.05);
 }
-
-.glass{
-  background:linear-gradient(
-    135deg,
-    rgba(255,255,255,.35),
-    rgba(255,255,255,.05)
-  );
-  backdrop-filter:blur(22px) saturate(160%);
-  -webkit-backdrop-filter:blur(22px) saturate(160%);
-  border:1px solid var(--stroke);
-  border-radius:22px;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.35),
-    0 20px 50px rgba(0,0,0,.35);
+#btnCon { background: #007BFF; color: white; }
+#btnCai { background: #FF3B3B; color: white; }
+#calcBtn { background: #00B894; color: white; width: 100%; margin-top: 15px; }
+#circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  line-height: 100px;
+  font-weight: bold;
+  font-size: 36px;
+  margin: 15px auto;
+  color: white;
+  background: #00A2FF;
+  transition: 0.3s;
 }
-
-.card{padding:14px;margin-bottom:14px}
-
-.buttons{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
+#result {
+  font-family: monospace;
+  font-size: 30px;
+  color: #00FFB2;
+  margin-top: 10px;
 }
-.btn{
-  padding:16px;
-  border-radius:18px;
-  border:1px solid var(--stroke);
-  font-size:16px;
-  font-weight:600;
-  color:white;
-  backdrop-filter:blur(12px);
+.overlay {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.9);
+  display:flex; align-items:center; justify-content:center; z-index:100;
 }
-.btn:active{transform:scale(.97)}
-.btn.tai{background:linear-gradient(135deg,#3ddc97,#1fa774)}
-.btn.xiu{background:linear-gradient(135deg,#7c83ff,#4b52d9)}
-.btn.warn{background:linear-gradient(135deg,#ffcc66,#c49a2d)}
-.btn.bad{background:linear-gradient(135deg,#ff6b6b,#c73c3c)}
-
-.history{
-  display:flex;
-  gap:6px;
-  flex-wrap:wrap;
-  margin-top:10px;
+.overlay-frame {
+  background:#272c3c; padding:20px; border-radius:12px; text-align:center; position:relative;
 }
-.dot{
-  width:22px;height:22px;
-  border-radius:50%;
-  display:grid;place-items:center;
-  font-size:12px;
-  color:white;
+.overlay-frame button {
+  width:50px; height:50px; border-radius:50%; border:none; margin:5px; font-weight:bold; cursor:pointer; color:white; font-size:18px;
+  transition: 0.2s;
 }
-.dot.tai{background:var(--tai)}
-.dot.xiu{background:var(--xiu)}
-
-.kpi{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin-bottom:10px;
-}
-.box{
-  text-align:center;
-  padding:10px;
-  border-radius:16px;
-  background:rgba(255,255,255,.12);
-  border:1px solid var(--stroke);
-}
-.box .label{font-size:11px;color:var(--mut)}
-.box .value{font-size:18px;font-weight:600}
-
-.hint{
-  text-align:center;
-  font-size:22px;
-  font-weight:700;
-  margin-top:6px;
-}
-
-canvas{width:100%;height:180px}
-
-.footer{
-  text-align:center;
-  font-size:11px;
-  color:var(--mut);
-  margin-top:6px;
+.overlay-frame button:hover { transform: scale(1.1); }
+.overlay-close {
+  position:absolute; top:8px; right:12px; font-size:22px; cursor:pointer; color:white;
 }
 </style>
 </head>
-
 <body>
-<div class="app">
-
-  <div class="header">
-    <h1>AI Tài Xỉu</h1>
-    <p>Liquid Glass • Mobile Edition</p>
+<div class="container">
+  <h2>Sảnh sexy</h2>
+  <div>
+    <select id="table">
+      <option>BÀN 1</option>
+      <option>BÀN C01</option>
+      <option>BÀN C05</option>
+      <option>BÀN C06</option>
+      <option>BÀN C07</option>
+    </select>
   </div>
-
-  <div class="glass card">
-    <div class="buttons">
-      <button class="btn tai" onclick="add('T')">➕ TÀI</button>
-      <button class="btn xiu" onclick="add('X')">➕ XỈU</button>
-      <button class="btn warn" onclick="undo()">↩ Hoàn tác</button>
-      <button class="btn bad" onclick="resetAll()">⟲ Reset</button>
-    </div>
-    <div class="history" id="hist"></div>
+  <div>
+    <button id="btnCon">CON 0</button>
+    <button id="btnCai">CÁI 0</button>
   </div>
-
-  <div class="glass card">
-    <div class="kpi">
-      <div class="box">
-        <div class="label">P(Tài)</div>
-        <div class="value" id="pt">–</div>
-      </div>
-      <div class="box">
-        <div class="label">P(Xỉu)</div>
-        <div class="value" id="px">–</div>
-      </div>
-      <div class="box">
-        <div class="label">Gợi ý</div>
-        <div class="value" id="hint">–</div>
-      </div>
-    </div>
-    <canvas id="chart"></canvas>
-    <div class="hint" id="bigHint"></div>
-  </div>
-
-  <div class="footer">
-    Educational only • Không khuyến khích cờ bạc
-  </div>
-
+  <button id="calcBtn">TÍNH</button>
+  <div id="circle">P</div>
+  <div id="result">0000</div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <script>
-const hist=[];
-let chart;
+let con = 0, cai = 0;
 
-function add(v){hist.push(v);render();}
-function undo(){hist.pop();render();}
-function resetAll(){hist.length=0;render();}
+// --- Công thức ---
+function f_ban1(x,y){ return Math.round((-1747/7) + (4504/21)*x - (5/6)*y - (401/21)*(x**2)); }
+function f_banC01(x,y){ return Math.round(x + Math.floor((200*y + 2)/7)); }
+function f_banC05(a,b){ let P=-0.378,Q=12.522,R=6.4; return Math.round(P*(a**2)+Q*a+R*b+96); }
+function f_banC06(x,y){ return Math.round(-9435.9036 + 1372.9237*x + 2314.0843*y - 35.56225*(x**2) - 160.79518*x*y - 139.01205*(y**2)); }
+function f_banC07(a,b){ return Math.round(36.65*(a**2) + 7.05*(b**2) - 42.3*a*b); }
 
-function probs(){
-  const t=hist.filter(x=>x==='T').length;
-  const n=hist.length;
-  const p=(t+1)/(n+2);
-  return {T:p,X:1-p};
-}
-
-function markov(){
-  if(hist.length<2) return 0.5;
-  let TT=0,TX=0,XT=0,XX=0;
-  for(let i=1;i<hist.length;i++){
-    const a=hist[i-1],b=hist[i];
-    if(a==='T'&&b==='T')TT++;
-    if(a==='T'&&b==='X')TX++;
-    if(a==='X'&&b==='T')XT++;
-    if(a==='X'&&b==='X')XX++;
+function formatResult(x,y,table){
+  let val;
+  switch(table){
+    case "BÀN 1": val=f_ban1(x,y); break;
+    case "BÀN C01": val=f_banC01(x,y); break;
+    case "BÀN C05": val=f_banC05(x,y); break;
+    case "BÀN C06": val=f_banC06(x,y); break;
+    case "BÀN C07": val=f_banC07(x,y); break;
   }
-  const last=hist.at(-1);
-  const s=last==='T'?TT+TX+2:XT+XX+2;
-  return last==='T'?(TT+1)/s:(XT+1)/s;
+  return Math.abs(val).toString().padStart(4,'0');
 }
 
-function predict(){
-  const p=probs().T;
-  const m=markov();
-  let T=0.6*p+0.4*m;
-  T=Math.min(0.98,Math.max(0.02,T));
-  return {T,X:1-T};
+// --- Overlay chọn số ---
+function chooseNumber(target){
+  let overlay=document.createElement('div'); overlay.className='overlay';
+  let frame=document.createElement('div'); frame.className='overlay-frame';
+  let close=document.createElement('div'); close.className='overlay-close'; close.textContent='✕';
+  close.onclick=()=>document.body.removeChild(overlay);
+  frame.appendChild(close);
+  let title=document.createElement('div'); title.textContent='Chọn số'; title.style.marginBottom='12px'; title.style.color='#00FFB2'; title.style.fontSize='18px';
+  frame.appendChild(title);
+
+  for(let i=0;i<10;i++){
+    let btn=document.createElement('button'); btn.textContent=i;
+    btn.style.background=target.id==='btnCon'?'#007BFF':'#FF3B3B';
+    btn.onclick=()=>{
+      if(target.id==='btnCon'){ con=i; target.textContent='CON '+i; }
+      else{ cai=i; target.textContent='CÁI '+i; }
+      document.body.removeChild(overlay);
+    };
+    frame.appendChild(btn);
+  }
+
+  overlay.appendChild(frame);
+  document.body.appendChild(overlay);
 }
 
-function drawChart(){
-  let ema=0,k=0.25;
-  const data=[];
-  hist.forEach(x=>{
-    ema=ema?k*(x==='T'?1:0)+(1-k)*ema:(x==='T'?1:0);
-    data.push(ema);
-  });
-  if(chart)chart.destroy();
-  chart=new Chart(chartEl,{
-    type:'line',
-    data:{labels:data.map((_,i)=>i+1),
-      datasets:[{data,borderWidth:2}]},
-    options:{
-      plugins:{legend:{display:false}},
-      scales:{y:{min:0,max:1}},
-      responsive:true
+// --- Hiệu ứng số ---
+function animateRandom(finalValue, callback){
+  let duration=500,interval=50,steps=duration/interval,counter=0;
+  let intv=setInterval(()=>{
+    if(counter<steps){
+      let str='';
+      for(let c of finalValue){ str+=/\d/.test(c)?Math.floor(Math.random()*10):c; }
+      document.getElementById('result').textContent=str.padStart(4,'0');
+      counter++;
+    } else { clearInterval(intv); revealNumber(finalValue,callback); }
+  }, interval);
+}
+
+function revealNumber(finalValue, callback){
+  let display=finalValue.split('').map(c=>/\d/.test(c)?'_':c);
+  let index=0;
+  function showNext(){
+    while(index<finalValue.length && !/\d/.test(finalValue[index])) index++;
+    if(index<finalValue.length){
+      display[index]=finalValue[index];
+      document.getElementById('result').textContent=display.join('');
+      index++;
+      setTimeout(showNext,80);
+    } else callback();
+  }
+  showNext();
+}
+
+// --- Tính toán ---
+function calculate(){
+  let table=document.getElementById('table').value;
+  let resultStr=formatResult(con,cai,table);
+  let resultInt=parseInt(resultStr);
+  let circle=document.getElementById('circle');
+  circle.style.background='#202533'; circle.textContent='?'; document.getElementById('result').textContent='----';
+
+  function showFinal(){
+    let even=resultInt%2===0;
+    if(["BÀN 1","BÀN C05","BÀN C06"].includes(table)){
+      circle.style.background=even?"#00A2FF":"#FF3B3B"; circle.textContent=even?"P":"B";
+    } else if(table==="BÀN C01"){
+      circle.style.background=even?"#FF3B3B":"#00A2FF"; circle.textContent=even?"B":"P";
+    } else{
+      circle.style.background=even?"#00A2FF":"#FF3B3B"; circle.textContent=even?"P":"B";
     }
-  });
+  }
+
+  animateRandom(resultStr, showFinal);
 }
 
-const chartEl=document.getElementById('chart');
-
-function render(){
-  histEl.innerHTML='';
-  hist.slice(-40).forEach(x=>{
-    const d=document.createElement('div');
-    d.className='dot '+(x==='T'?'tai':'xiu');
-    d.textContent=x;
-    histEl.appendChild(d);
-  });
-  const r=predict();
-  pt.textContent=(r.T*100).toFixed(1)+'%';
-  px.textContent=(r.X*100).toFixed(1)+'%';
-  hint.textContent=r.T>r.X?'Tài':'Xỉu';
-  bigHint.textContent=r.T>r.X?'NÊN ĐÁNH TÀI':'NÊN ĐÁNH XỈU';
-  drawChart();
-}
-
-const histEl=document.getElementById('hist');
-render();
+// --- Event ---
+document.getElementById('btnCon').addEventListener('click',()=>chooseNumber(document.getElementById('btnCon')));
+document.getElementById('btnCai').addEventListener('click',()=>chooseNumber(document.getElementById('btnCai')));
+document.getElementById('calcBtn').addEventListener('click',calculate);
 </script>
 </body>
 </html>
