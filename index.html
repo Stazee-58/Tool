@@ -1,355 +1,266 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Tool</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>AI Tài Xỉu • Liquid Glass</title>
 
 <style>
 :root{
- --glass-border: rgba(255,255,255,0.22);
+  --bg1:#0a0f2c;
+  --bg2:#0b3c2e;
+  --glass:rgba(255,255,255,.18);
+  --stroke:rgba(255,255,255,.25);
+  --txt:#eef2ff;
+  --mut:rgba(255,255,255,.65);
+  --tai:#3ddc97;
+  --xiu:#7c83ff;
+  --warn:#ffcc66;
+  --bad:#ff6b6b;
 }
 
-*{
- box-sizing:border-box;
- font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif;
-}
-
+*{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,Inter,system-ui}
 body{
- min-height:100vh;
- margin:0;
- display:flex;
- justify-content:center;
- align-items:center;
- background:
-  radial-gradient(1200px 600px at top, #1e3a8a, #020617),
-  linear-gradient(180deg,#020617,#000);
- color:#e5e7eb;
+  margin:0;
+  background:
+    radial-gradient(120% 80% at 20% -10%,#1a3cff44,transparent 40%),
+    radial-gradient(100% 70% at 90% 10%,#00ffb344,transparent 45%),
+    linear-gradient(180deg,var(--bg1),var(--bg2));
+  color:var(--txt);
+  min-height:100vh;
 }
 
 .app{
- width:100%;
- max-width:420px;
- padding:16px;
+  max-width:420px;
+  margin:auto;
+  padding:14px;
 }
 
-/* ===== LIQUID GLASS CARD ===== */
-.card{
- position:relative;
- overflow:hidden;
- border-radius:22px;
- padding:16px;
- margin-bottom:14px;
+.header{
+  text-align:center;
+  margin-bottom:14px;
+}
+.header h1{
+  margin:0;
+  font-size:20px;
+  font-weight:600;
+}
+.header p{
+  margin:4px 0 0;
+  font-size:12px;
+  color:var(--mut);
+}
 
- background:
-  linear-gradient(
-   120deg,
-   rgba(255,255,255,.18),
-   rgba(255,255,255,.06),
-   rgba(255,255,255,.14)
+.glass{
+  background:linear-gradient(
+    135deg,
+    rgba(255,255,255,.35),
+    rgba(255,255,255,.05)
   );
-
- backdrop-filter: blur(22px) saturate(140%);
- -webkit-backdrop-filter: blur(22px) saturate(140%);
- border:1px solid var(--glass-border);
-
- box-shadow:
-  inset 0 1px 0 rgba(255,255,255,.35),
-  inset 0 -20px 40px rgba(255,255,255,.05),
-  0 25px 50px rgba(0,0,0,.55);
-
- animation: liquidShift 10s ease-in-out infinite;
- transition: transform .2s ease;
+  backdrop-filter:blur(22px) saturate(160%);
+  -webkit-backdrop-filter:blur(22px) saturate(160%);
+  border:1px solid var(--stroke);
+  border-radius:22px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.35),
+    0 20px 50px rgba(0,0,0,.35);
 }
 
-/* liquid blobs */
-.card::after{
- content:"";
- position:absolute;
- inset:-40%;
- background:
-  radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), transparent 40%),
-  radial-gradient(circle at 70% 60%, rgba(255,255,255,.12), transparent 45%),
-  radial-gradient(circle at 50% 90%, rgba(255,255,255,.1), transparent 50%);
- opacity:.35;
- filter: blur(40px);
- animation: liquidMove 14s linear infinite;
- pointer-events:none;
+.card{padding:14px;margin-bottom:14px}
+
+.buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
 }
-
-/* shine */
-.card::before{
- content:"";
- position:absolute;
- inset:0;
- background:linear-gradient(
-  120deg,
-  transparent 35%,
-  rgba(255,255,255,.45),
-  transparent 65%
- );
- opacity:.18;
- transform:translateX(-120%);
- animation: shineMove 7s ease-in-out infinite;
- pointer-events:none;
+.btn{
+  padding:16px;
+  border-radius:18px;
+  border:1px solid var(--stroke);
+  font-size:16px;
+  font-weight:600;
+  color:white;
+  backdrop-filter:blur(12px);
 }
+.btn:active{transform:scale(.97)}
+.btn.tai{background:linear-gradient(135deg,#3ddc97,#1fa774)}
+.btn.xiu{background:linear-gradient(135deg,#7c83ff,#4b52d9)}
+.btn.warn{background:linear-gradient(135deg,#ffcc66,#c49a2d)}
+.btn.bad{background:linear-gradient(135deg,#ff6b6b,#c73c3c)}
 
-/* ===== ANIMATION ===== */
-@keyframes liquidShift{
- 0%{background-position:0% 50%}
- 50%{background-position:100% 50%}
- 100%{background-position:0% 50%}
-}
-
-@keyframes liquidMove{
- 0%{transform:translate(0,0)}
- 50%{transform:translate(6%,4%)}
- 100%{transform:translate(0,0)}
-}
-
-@keyframes shineMove{
- 0%{transform:translateX(-120%)}
- 50%{transform:translateX(120%)}
- 100%{transform:translateX(120%)}
-}
-
-/* ===== HEADER ===== */
-h1{
- text-align:center;
- margin:6px 0 16px;
- font-size:22px;
- letter-spacing:.5px;
-}
-
-/* ===== INPUT ===== */
-input{
- width:100%;
- padding:14px;
- border-radius:14px;
- border:1px solid var(--glass-border);
- background:rgba(0,0,0,.25);
- color:#fff;
- font-size:16px;
- outline:none;
-}
-
-input::placeholder{color:#94a3b8}
-
-/* ===== BUTTON ===== */
-button{
- width:100%;
- padding:14px;
- margin-top:10px;
- border-radius:16px;
- border:1px solid var(--glass-border);
- background:rgba(255,255,255,.14);
- color:#fff;
- font-size:15px;
- font-weight:600;
- backdrop-filter: blur(12px);
- cursor:pointer;
- transition:.2s;
-}
-
-button:active{
- transform:scale(.97);
- background:rgba(255,255,255,.22);
-}
-
-.btn-green{background:rgba(16,185,129,.28)}
-.btn-win{background:rgba(34,197,94,.4)}
-.btn-lose{background:rgba(239,68,68,.4)}
-.btn-reset{background:rgba(148,163,184,.3)}
-
-.row{
- display:flex;
- gap:10px;
-}
-
-/* ===== PREDICT ===== */
-.predict{
- text-align:center;
- font-size:28px;
- font-weight:700;
- margin:14px 0;
- animation:pulseGlow 1.6s ease-in-out infinite;
-}
-
-@keyframes pulseGlow{
- 0%{text-shadow:0 0 10px rgba(255,255,255,.25)}
- 50%{text-shadow:0 0 26px rgba(96,165,250,.75)}
- 100%{text-shadow:0 0 10px rgba(255,255,255,.25)}
-}
-
-/* ===== HISTORY ===== */
 .history{
- display:flex;
- flex-wrap:wrap;
- gap:8px;
- margin-top:10px;
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+.dot{
+  width:22px;height:22px;
+  border-radius:50%;
+  display:grid;place-items:center;
+  font-size:12px;
+  color:white;
+}
+.dot.tai{background:var(--tai)}
+.dot.xiu{background:var(--xiu)}
+
+.kpi{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:10px;
+}
+.box{
+  text-align:center;
+  padding:10px;
+  border-radius:16px;
+  background:rgba(255,255,255,.12);
+  border:1px solid var(--stroke);
+}
+.box .label{font-size:11px;color:var(--mut)}
+.box .value{font-size:18px;font-weight:600}
+
+.hint{
+  text-align:center;
+  font-size:22px;
+  font-weight:700;
+  margin-top:6px;
 }
 
-.cell{
- width:38px;
- height:38px;
- border-radius:12px;
- display:flex;
- align-items:center;
- justify-content:center;
- font-weight:700;
- backdrop-filter: blur(10px);
- box-shadow: inset 0 1px 0 rgba(255,255,255,.25);
-}
+canvas{width:100%;height:180px}
 
-.T{background:rgba(59,130,246,.65)}
-.X{background:rgba(244,63,94,.65)}
-
-/* ===== STAT ===== */
-.stat{
- display:flex;
- justify-content:space-between;
- margin-top:6px;
- font-size:15px;
- color:#cbd5f5;
-}
-
-.warn{
- text-align:center;
- margin-top:6px;
- color:#fca5a5;
- font-size:14px;
+.footer{
+  text-align:center;
+  font-size:11px;
+  color:var(--mut);
+  margin-top:6px;
 }
 </style>
 </head>
 
 <body>
 <div class="app">
-<h1>🧠 Tool</h1>
 
-<div class="card">
- <b>🎲 Nhập 5 ván gốc</b>
- <input id="baseInput" placeholder="VD: TTTXT" />
- <button class="btn-green" onclick="initAI()">KHỞI TẠO AI</button>
+  <div class="header">
+    <h1>AI Tài Xỉu</h1>
+    <p>Liquid Glass • Mobile Edition</p>
+  </div>
+
+  <div class="glass card">
+    <div class="buttons">
+      <button class="btn tai" onclick="add('T')">➕ TÀI</button>
+      <button class="btn xiu" onclick="add('X')">➕ XỈU</button>
+      <button class="btn warn" onclick="undo()">↩ Hoàn tác</button>
+      <button class="btn bad" onclick="resetAll()">⟲ Reset</button>
+    </div>
+    <div class="history" id="hist"></div>
+  </div>
+
+  <div class="glass card">
+    <div class="kpi">
+      <div class="box">
+        <div class="label">P(Tài)</div>
+        <div class="value" id="pt">–</div>
+      </div>
+      <div class="box">
+        <div class="label">P(Xỉu)</div>
+        <div class="value" id="px">–</div>
+      </div>
+      <div class="box">
+        <div class="label">Gợi ý</div>
+        <div class="value" id="hint">–</div>
+      </div>
+    </div>
+    <canvas id="chart"></canvas>
+    <div class="hint" id="bigHint"></div>
+  </div>
+
+  <div class="footer">
+    Educational only • Không khuyến khích cờ bạc
+  </div>
+
 </div>
 
-<div class="card">
- <b>🔮 Dự đoán</b>
- <div id="predict" class="predict">---</div>
- <div class="row">
-  <button class="btn-win" onclick="confirmResult(true)">THẮNG</button>
-  <button class="btn-lose" onclick="confirmResult(false)">THUA</button>
- </div>
- <button class="btn-reset" onclick="resetAll()">RESET</button>
- <div id="warn" class="warn"></div>
-</div>
-
-<div class="card">
- <b>📜 Lịch sử (9 ván)</b>
- <div id="history" class="history"></div>
-</div>
-
-<div class="card">
- <b>📊 Thống kê</b>
- <div class="stat"><span>Tổng ván</span><span id="total">0</span></div>
- <div class="stat"><span>Win</span><span id="win">0</span></div>
- <div class="stat"><span>Winrate</span><span id="rate">0%</span></div>
-</div>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-let data={visible:[],hidden:[],win:0,total:0};
-let predictPick="T";
+const hist=[];
+let chart;
 
-function initAI(){
- const input=document.getElementById("baseInput");
- let raw=input.value.toUpperCase().replace(/[^TX]/g,"");
- if(raw.length<5){alert("Nhập đủ 5 ván");return;}
- data.visible=[]; data.hidden=[];
- raw.split("").forEach(v=>pushHistory(v));
- input.disabled=true;
- analyze(); render();
+function add(v){hist.push(v);render();}
+function undo(){hist.pop();render();}
+function resetAll(){hist.length=0;render();}
+
+function probs(){
+  const t=hist.filter(x=>x==='T').length;
+  const n=hist.length;
+  const p=(t+1)/(n+2);
+  return {T:p,X:1-p};
 }
 
-function pushHistory(v){
- if(data.visible.length>=9) data.hidden.push(data.visible.shift());
- data.visible.push(v);
+function markov(){
+  if(hist.length<2) return 0.5;
+  let TT=0,TX=0,XT=0,XX=0;
+  for(let i=1;i<hist.length;i++){
+    const a=hist[i-1],b=hist[i];
+    if(a==='T'&&b==='T')TT++;
+    if(a==='T'&&b==='X')TX++;
+    if(a==='X'&&b==='T')XT++;
+    if(a==='X'&&b==='X')XX++;
+  }
+  const last=hist.at(-1);
+  const s=last==='T'?TT+TX+2:XT+XX+2;
+  return last==='T'?(TT+1)/s:(XT+1)/s;
 }
 
-function analyze(){
- const h=[...data.hidden,...data.visible];
- const predict=document.getElementById("predict");
- if(!h.length){predict.innerText="---";return;}
-
- let score=0,last=h[h.length-1],streak=1;
- for(let i=h.length-2;i>=0;i--){
-  if(h[i]===last) streak++; else break;
- }
- if(streak>=2) score+=last==="T"?2:-2;
-
- let t=h.filter(x=>x==="T").length;
- score+=t>(h.length-t)?1:-1;
-
- if(h.length>=3){
-  let a=h.slice(-3);
-  if(a[0]===a[2]&&a[0]!==a[1])
-   score+=a[0]==="T"?1:-1;
- }
-
- predictPick=score>=0?"T":"X";
- predict.innerText=predictPick==="T"?"🔥 TÀI":"❄️ XỈU";
+function predict(){
+  const p=probs().T;
+  const m=markov();
+  let T=0.6*p+0.4*m;
+  T=Math.min(0.98,Math.max(0.02,T));
+  return {T,X:1-T};
 }
 
-function confirmResult(win){
- if(!data.visible.length) return;
- let real;
- if(win){real=predictPick;data.win++;}
- else{real=predictPick==="T"?"X":"T";}
- pushHistory(real);
- data.total++;
- analyze(); render();
+function drawChart(){
+  let ema=0,k=0.25;
+  const data=[];
+  hist.forEach(x=>{
+    ema=ema?k*(x==='T'?1:0)+(1-k)*ema:(x==='T'?1:0);
+    data.push(ema);
+  });
+  if(chart)chart.destroy();
+  chart=new Chart(chartEl,{
+    type:'line',
+    data:{labels:data.map((_,i)=>i+1),
+      datasets:[{data,borderWidth:2}]},
+    options:{
+      plugins:{legend:{display:false}},
+      scales:{y:{min:0,max:1}},
+      responsive:true
+    }
+  });
 }
 
-function resetAll(){
- if(!confirm("Reset toàn bộ AI?")) return;
- data={visible:[],hidden:[],win:0,total:0};
- document.getElementById("baseInput").value="";
- document.getElementById("baseInput").disabled=false;
- document.getElementById("predict").innerText="---";
- render();
-}
+const chartEl=document.getElementById('chart');
 
 function render(){
- const history=document.getElementById("history");
- history.innerHTML="";
- data.visible.forEach(v=>{
-  let d=document.createElement("div");
-  d.className="cell "+v;
-  d.innerText=v;
-  history.appendChild(d);
- });
-
- document.getElementById("total").innerText=data.total;
- document.getElementById("win").innerText=data.win;
- let rate=data.total?Math.round(data.win/data.total*100):0;
- document.getElementById("rate").innerText=rate+"%";
- document.getElementById("warn").innerText=
-  rate<50 && data.total>5 ? "⚠ Winrate thấp, nên dừng" : "";
+  histEl.innerHTML='';
+  hist.slice(-40).forEach(x=>{
+    const d=document.createElement('div');
+    d.className='dot '+(x==='T'?'tai':'xiu');
+    d.textContent=x;
+    histEl.appendChild(d);
+  });
+  const r=predict();
+  pt.textContent=(r.T*100).toFixed(1)+'%';
+  px.textContent=(r.X*100).toFixed(1)+'%';
+  hint.textContent=r.T>r.X?'Tài':'Xỉu';
+  bigHint.textContent=r.T>r.X?'NÊN ĐÁNH TÀI':'NÊN ĐÁNH XỈU';
+  drawChart();
 }
 
-/* ===== GLASS TILT ===== */
-document.querySelectorAll(".card").forEach(card=>{
- card.addEventListener("mousemove",e=>{
-  const r=card.getBoundingClientRect();
-  const x=e.clientX-r.left;
-  const y=e.clientY-r.top;
-  const rx=((y/r.height)-0.5)*-6;
-  const ry=((x/r.width)-0.5)*6;
-  card.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;
- });
- card.addEventListener("mouseleave",()=>{
-  card.style.transform="rotateX(0) rotateY(0)";
- });
-});
+const histEl=document.getElementById('hist');
+render();
 </script>
 </body>
 </html>
