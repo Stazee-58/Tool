@@ -3,214 +3,270 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sảnh sexy</title>
+<title>Sảnh Sexy • Premium</title>
+
 <style>
-body {
-  background: #0b1220;
-  font-family: 'Arial', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
+:root{
+  --bg:#070b16;
+  --glass:rgba(255,255,255,0.08);
+  --border:rgba(255,255,255,0.18);
+  --neon:#00ffcc;
+  --blue:#00a2ff;
+  --red:#ff3b3b;
 }
-.container {
-  background: #1a1f2c;
-  padding: 25px 30px;
-  border-radius: 15px;
-  box-shadow: 0 0 25px rgba(0,0,0,0.5);
-  text-align: center;
-  width: 320px;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:radial-gradient(circle at top,#0e1630,#050810 70%);
+  font-family:Inter,system-ui,sans-serif;
+  color:white;
 }
-h2 {
-  color: #00FFB2;
-  margin-bottom: 20px;
+
+.container{
+  width:340px;
+  padding:26px 24px 28px;
+  border-radius:26px;
+  background:var(--glass);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--border);
+  box-shadow:0 0 40px rgba(0,255,204,.12), inset 0 0 20px rgba(255,255,255,.05);
+  text-align:center;
 }
-select {
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: none;
-  background: #272c3c;
-  color: white;
-  font-size: 16px;
-  margin-bottom: 15px;
+
+h2{
+  margin:0 0 18px;
+  font-weight:700;
+  letter-spacing:1px;
+  color:var(--neon);
+  text-shadow:0 0 10px rgba(0,255,204,.6);
 }
-button {
-  border: none;
-  border-radius: 12px;
-  padding: 12px 18px;
-  font-size: 16px;
-  font-weight: bold;
-  margin: 5px;
-  cursor: pointer;
-  transition: 0.2s;
+
+select{
+  width:100%;
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:rgba(0,0,0,.35);
+  color:white;
+  font-size:16px;
+  margin-bottom:18px;
 }
-button:hover {
-  transform: scale(1.05);
+
+.btn-row{
+  display:flex;
+  gap:12px;
+  margin-bottom:16px;
 }
-#btnCon { background: #007BFF; color: white; }
-#btnCai { background: #FF3B3B; color: white; }
-#calcBtn { background: #00B894; color: white; width: 100%; margin-top: 15px; }
-#circle {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  line-height: 100px;
-  font-weight: bold;
-  font-size: 36px;
-  margin: 15px auto;
-  color: white;
-  background: #00A2FF;
-  transition: 0.3s;
+
+button{
+  flex:1;
+  border:none;
+  border-radius:16px;
+  padding:14px 0;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.25s;
 }
-#result {
-  font-family: monospace;
-  font-size: 30px;
-  color: #00FFB2;
-  margin-top: 10px;
+
+button:active{transform:scale(.95)}
+
+#btnCon{
+  background:linear-gradient(135deg,#0d6efd,#00c6ff);
+  box-shadow:0 0 18px rgba(0,162,255,.6);
 }
-.overlay {
-  position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background: rgba(0,0,0,0.9);
-  display:flex; align-items:center; justify-content:center; z-index:100;
+#btnCai{
+  background:linear-gradient(135deg,#ff3b3b,#ff7676);
+  box-shadow:0 0 18px rgba(255,59,59,.6);
 }
-.overlay-frame {
-  background:#272c3c; padding:20px; border-radius:12px; text-align:center; position:relative;
+#calcBtn{
+  width:100%;
+  background:linear-gradient(135deg,#00ffcc,#00b894);
+  color:#042b26;
+  box-shadow:0 0 22px rgba(0,255,204,.6);
 }
-.overlay-frame button {
-  width:50px; height:50px; border-radius:50%; border:none; margin:5px; font-weight:bold; cursor:pointer; color:white; font-size:18px;
-  transition: 0.2s;
+
+#circle{
+  margin:22px auto 10px;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:42px;
+  font-weight:800;
+  background:#111;
+  box-shadow:inset 0 0 25px rgba(0,0,0,.8);
+  transition:.3s;
 }
-.overlay-frame button:hover { transform: scale(1.1); }
-.overlay-close {
-  position:absolute; top:8px; right:12px; font-size:22px; cursor:pointer; color:white;
+
+#result{
+  font-family:monospace;
+  font-size:34px;
+  letter-spacing:2px;
+  color:var(--neon);
+  text-shadow:0 0 12px rgba(0,255,204,.7);
+}
+
+/* overlay */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.92);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+.overlay-frame{
+  background:var(--glass);
+  backdrop-filter:blur(16px);
+  padding:20px;
+  border-radius:20px;
+  border:1px solid var(--border);
+}
+.overlay-frame button{
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  margin:6px;
+  font-size:18px;
+  font-weight:bold;
+  border:none;
+  color:white;
 }
 </style>
 </head>
+
 <body>
 <div class="container">
-  <h2>Sảnh sexy</h2>
-  <div>
-    <select id="table">
-      <option>BÀN 1</option>
-      <option>BÀN C01</option>
-      <option>BÀN C05</option>
-      <option>BÀN C06</option>
-      <option>BÀN C07</option>
-    </select>
-  </div>
-  <div>
+  <h2>SẢNH SEXY</h2>
+
+  <select id="table">
+    <option>BÀN 1</option>
+    <option>BÀN C01</option>
+    <option>BÀN C03</option>
+    <option>BÀN C05</option>
+    <option>BÀN C06</option>
+    <option>BÀN C07</option>
+  </select>
+
+  <div class="btn-row">
     <button id="btnCon">CON 0</button>
     <button id="btnCai">CÁI 0</button>
   </div>
-  <button id="calcBtn">TÍNH</button>
-  <div id="circle">P</div>
-  <div id="result">0000</div>
+
+  <button id="calcBtn">TÍNH KẾT QUẢ</button>
+
+  <div id="circle">?</div>
+  <div id="result">----</div>
 </div>
 
 <script>
-let con = 0, cai = 0;
+let con=0,cai=0;
 
-// --- Công thức ---
-function f_ban1(x,y){ return Math.round((-1747/7) + (4504/21)*x - (5/6)*y - (401/21)*(x**2)); }
-function f_banC01(x,y){ return Math.round(x + Math.floor((200*y + 2)/7)); }
-function f_banC05(a,b){ let P=-0.378,Q=12.522,R=6.4; return Math.round(P*(a**2)+Q*a+R*b+96); }
-function f_banC06(x,y){ return Math.round(-9435.9036 + 1372.9237*x + 2314.0843*y - 35.56225*(x**2) - 160.79518*x*y - 139.01205*(y**2)); }
-function f_banC07(a,b){ return Math.round(36.65*(a**2) + 7.05*(b**2) - 42.3*a*b); }
+/* ==== CÔNG THỨC ==== */
+function f_ban1(x,y){return Math.round((-1747/7)+(4504/21)*x-(5/6)*y-(401/21)*x*x);}
+function f_banC01(x,y){return Math.round(x+Math.floor((200*y+2)/7));}
+function f_banC03(a,b){return Math.round(12.7*a*a+9.3*b*b-21.4*a*b+18.6*a+25.1*b+77);}
+function f_banC05(a,b){return Math.round(-0.378*a*a+12.522*a+6.4*b+96);}
+function f_banC06(x,y){return Math.round(-9435.9+1372.9*x+2314.1*y-35.56*x*x-160.8*x*y-139*y*y);}
+function f_banC07(a,b){return Math.round(36.65*a*a+7.05*b*b-42.3*a*b);}
 
-function formatResult(x,y,table){
-  let val;
-  switch(table){
-    case "BÀN 1": val=f_ban1(x,y); break;
-    case "BÀN C01": val=f_banC01(x,y); break;
-    case "BÀN C05": val=f_banC05(x,y); break;
-    case "BÀN C06": val=f_banC06(x,y); break;
-    case "BÀN C07": val=f_banC07(x,y); break;
-  }
-  return Math.abs(val).toString().padStart(4,'0');
+function calcVal(a,b,t){
+  return Math.abs(
+    t==="BÀN 1"?f_ban1(a,b):
+    t==="BÀN C01"?f_banC01(a,b):
+    t==="BÀN C03"?f_banC03(a,b):
+    t==="BÀN C05"?f_banC05(a,b):
+    t==="BÀN C06"?f_banC06(a,b):
+    f_banC07(a,b)
+  );
 }
 
-// --- Overlay chọn số ---
-function chooseNumber(target){
-  let overlay=document.createElement('div'); overlay.className='overlay';
-  let frame=document.createElement('div'); frame.className='overlay-frame';
-  let close=document.createElement('div'); close.className='overlay-close'; close.textContent='✕';
-  close.onclick=()=>document.body.removeChild(overlay);
-  frame.appendChild(close);
-  let title=document.createElement('div'); title.textContent='Chọn số'; title.style.marginBottom='12px'; title.style.color='#00FFB2'; title.style.fontSize='18px';
-  frame.appendChild(title);
+/* ==== OVERLAY CHỌN SỐ ==== */
+function pick(isCon){
+  let o=document.createElement("div");
+  o.className="overlay";
+  let f=document.createElement("div");
+  f.className="overlay-frame";
 
   for(let i=0;i<10;i++){
-    let btn=document.createElement('button'); btn.textContent=i;
-    btn.style.background=target.id==='btnCon'?'#007BFF':'#FF3B3B';
-    btn.onclick=()=>{
-      if(target.id==='btnCon'){ con=i; target.textContent='CON '+i; }
-      else{ cai=i; target.textContent='CÁI '+i; }
-      document.body.removeChild(overlay);
+    let b=document.createElement("button");
+    b.textContent=i;
+    b.style.background=isCon?"#00a2ff":"#ff3b3b";
+    b.onclick=()=>{
+      if(isCon){con=i;btnCon.textContent="CON "+i;}
+      else{cai=i;btnCai.textContent="CÁI "+i;}
+      document.body.removeChild(o);
     };
-    frame.appendChild(btn);
+    f.appendChild(b);
   }
-
-  overlay.appendChild(frame);
-  document.body.appendChild(overlay);
+  o.appendChild(f);
+  document.body.appendChild(o);
 }
 
-// --- Hiệu ứng số ---
-function animateRandom(finalValue, callback){
-  let duration=500,interval=50,steps=duration/interval,counter=0;
-  let intv=setInterval(()=>{
-    if(counter<steps){
-      let str='';
-      for(let c of finalValue){ str+=/\d/.test(c)?Math.floor(Math.random()*10):c; }
-      document.getElementById('result').textContent=str.padStart(4,'0');
-      counter++;
-    } else { clearInterval(intv); revealNumber(finalValue,callback); }
-  }, interval);
-}
-
-function revealNumber(finalValue, callback){
-  let display=finalValue.split('').map(c=>/\d/.test(c)?'_':c);
-  let index=0;
-  function showNext(){
-    while(index<finalValue.length && !/\d/.test(finalValue[index])) index++;
-    if(index<finalValue.length){
-      display[index]=finalValue[index];
-      document.getElementById('result').textContent=display.join('');
-      index++;
-      setTimeout(showNext,80);
-    } else callback();
-  }
-  showNext();
-}
-
-// --- Tính toán ---
-function calculate(){
-  let table=document.getElementById('table').value;
-  let resultStr=formatResult(con,cai,table);
-  let resultInt=parseInt(resultStr);
-  let circle=document.getElementById('circle');
-  circle.style.background='#202533'; circle.textContent='?'; document.getElementById('result').textContent='----';
-
-  function showFinal(){
-    let even=resultInt%2===0;
-    if(["BÀN 1","BÀN C05","BÀN C06"].includes(table)){
-      circle.style.background=even?"#00A2FF":"#FF3B3B"; circle.textContent=even?"P":"B";
-    } else if(table==="BÀN C01"){
-      circle.style.background=even?"#FF3B3B":"#00A2FF"; circle.textContent=even?"B":"P";
-    } else{
-      circle.style.background=even?"#00A2FF":"#FF3B3B"; circle.textContent=even?"P":"B";
+/* ==== HIỆU ỨNG CHẠY SỐ (NHƯ CŨ) ==== */
+function animateNumber(finalValue, callback){
+  let steps=12;
+  let count=0;
+  let timer=setInterval(()=>{
+    if(count<steps){
+      result.textContent=Math.floor(Math.random()*10000).toString().padStart(4,"0");
+      count++;
+    }else{
+      clearInterval(timer);
+      reveal(finalValue,callback);
     }
-  }
-
-  animateRandom(resultStr, showFinal);
+  },60);
 }
 
-// --- Event ---
-document.getElementById('btnCon').addEventListener('click',()=>chooseNumber(document.getElementById('btnCon')));
-document.getElementById('btnCai').addEventListener('click',()=>chooseNumber(document.getElementById('btnCai')));
-document.getElementById('calcBtn').addEventListener('click',calculate);
+function reveal(finalValue, callback){
+  let display=["_","_","_","_"];
+  let i=0;
+  function step(){
+    if(i<4){
+      display[i]=finalValue[i];
+      result.textContent=display.join("");
+      i++;
+      setTimeout(step,80);
+    }else callback();
+  }
+  step();
+}
+
+/* ==== CALC ==== */
+function calculate(){
+  let t=table.value;
+  let v=calcVal(con,cai,t);
+  let even=v%2===0;
+  let final=v.toString().padStart(4,"0");
+
+  circle.textContent="?";
+  circle.style.background="#111";
+  result.textContent="----";
+
+  animateNumber(final,()=>{
+    circle.textContent=even?"P":"B";
+    circle.style.background=even
+      ?"radial-gradient(circle,#00c6ff,#004b75)"
+      :"radial-gradient(circle,#ff7676,#7a0000)";
+    circle.style.boxShadow=even
+      ?"0 0 30px rgba(0,162,255,.8)"
+      :"0 0 30px rgba(255,59,59,.8)";
+  });
+}
+
+/* ==== EVENT ==== */
+btnCon.onclick=()=>pick(true);
+btnCai.onclick=()=>pick(false);
+calcBtn.onclick=calculate;
 </script>
 </body>
 </html>
