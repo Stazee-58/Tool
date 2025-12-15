@@ -2,142 +2,180 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sảnh Sexy • Premium</title>
 
 <style>
 :root{
-  --bg:#070b16;
-  --glass:rgba(255,255,255,0.08);
-  --border:rgba(255,255,255,0.18);
-  --neon:#00ffcc;
-  --blue:#00a2ff;
-  --red:#ff3b3b;
+  --bg1:#050914;
+  --bg2:#0c1633;
+  --glass:rgba(255,255,255,.10);
+  --border:rgba(255,255,255,.22);
+  --neon:#00ffe0;
+  --blue:#00aaff;
+  --red:#ff4d4d;
 }
-*{box-sizing:border-box}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
 
 body{
   margin:0;
-  height:100vh;
+  min-height:100svh;
   display:flex;
   justify-content:center;
   align-items:center;
-  background:radial-gradient(circle at top,#0e1630,#050810 70%);
-  font-family:Inter,system-ui,sans-serif;
+  background:
+    radial-gradient(120% 60% at top,var(--bg2),var(--bg1));
+  font-family:-apple-system, BlinkMacSystemFont, Inter, system-ui, sans-serif;
   color:white;
 }
 
+/* ===== CONTAINER ===== */
 .container{
-  width:340px;
-  padding:26px 24px 28px;
-  border-radius:26px;
-  background:var(--glass);
-  backdrop-filter:blur(18px);
+  width:92%;
+  max-width:360px;
+  padding:24px 22px 26px;
+  border-radius:28px;
+  background:linear-gradient(
+    180deg,
+    rgba(255,255,255,.14),
+    rgba(255,255,255,.05)
+  );
+  backdrop-filter:blur(22px) saturate(140%);
+  -webkit-backdrop-filter:blur(22px) saturate(140%);
   border:1px solid var(--border);
-  box-shadow:0 0 40px rgba(0,255,204,.12), inset 0 0 20px rgba(255,255,255,.05);
+  box-shadow:
+    0 30px 60px rgba(0,0,0,.6),
+    inset 0 0 0.5px rgba(255,255,255,.6);
   text-align:center;
 }
 
+/* ===== TITLE ===== */
 h2{
   margin:0 0 18px;
-  font-weight:700;
-  letter-spacing:1px;
+  font-size:20px;
+  font-weight:800;
+  letter-spacing:1.4px;
   color:var(--neon);
-  text-shadow:0 0 10px rgba(0,255,204,.6);
+  text-shadow:0 0 16px rgba(0,255,224,.7);
 }
 
+/* ===== SELECT ===== */
 select{
   width:100%;
-  padding:12px 14px;
-  border-radius:14px;
+  padding:14px 16px;
+  border-radius:16px;
   border:1px solid var(--border);
   background:rgba(0,0,0,.35);
   color:white;
   font-size:16px;
+  outline:none;
   margin-bottom:18px;
 }
 
+/* ===== BUTTON ROW ===== */
 .btn-row{
   display:flex;
-  gap:12px;
-  margin-bottom:16px;
+  gap:14px;
+  margin-bottom:18px;
 }
 
 button{
-  flex:1;
   border:none;
-  border-radius:16px;
+  border-radius:18px;
   padding:14px 0;
   font-size:15px;
   font-weight:700;
+  color:white;
   cursor:pointer;
-  transition:.25s;
+  transition:transform .18s, box-shadow .18s;
 }
 
-button:active{transform:scale(.95)}
+button:active{
+  transform:scale(.94);
+}
 
+/* ===== BUTTON COLORS ===== */
 #btnCon{
-  background:linear-gradient(135deg,#0d6efd,#00c6ff);
-  box-shadow:0 0 18px rgba(0,162,255,.6);
+  flex:1;
+  background:linear-gradient(135deg,#1fb6ff,#007aff);
+  box-shadow:0 10px 28px rgba(0,122,255,.55);
 }
+
 #btnCai{
-  background:linear-gradient(135deg,#ff3b3b,#ff7676);
-  box-shadow:0 0 18px rgba(255,59,59,.6);
+  flex:1;
+  background:linear-gradient(135deg,#ff5f5f,#ff2d2d);
+  box-shadow:0 10px 28px rgba(255,45,45,.55);
 }
+
 #calcBtn{
   width:100%;
-  background:linear-gradient(135deg,#00ffcc,#00b894);
-  color:#042b26;
-  box-shadow:0 0 22px rgba(0,255,204,.6);
+  margin-bottom:14px;
+  background:linear-gradient(135deg,#00ffe0,#00c7a8);
+  color:#04332b;
+  box-shadow:0 14px 36px rgba(0,255,224,.6);
 }
 
+/* ===== RESULT CIRCLE ===== */
 #circle{
-  margin:22px auto 10px;
-  width:120px;
-  height:120px;
+  margin:18px auto 10px;
+  width:118px;
+  height:118px;
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:42px;
-  font-weight:800;
-  background:#111;
-  box-shadow:inset 0 0 25px rgba(0,0,0,.8);
-  transition:.3s;
+  font-weight:900;
+  background:#0d0f18;
+  box-shadow:
+    inset 0 0 26px rgba(0,0,0,.9),
+    0 0 0 rgba(0,0,0,0);
+  transition:.35s;
 }
 
+/* ===== NUMBER ===== */
 #result{
-  font-family:monospace;
+  font-family:ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size:34px;
-  letter-spacing:2px;
+  letter-spacing:3px;
   color:var(--neon);
-  text-shadow:0 0 12px rgba(0,255,204,.7);
+  text-shadow:0 0 14px rgba(0,255,224,.8);
 }
 
-/* overlay */
+/* ===== OVERLAY ===== */
 .overlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.92);
+  background:rgba(0,0,0,.94);
   display:flex;
   justify-content:center;
   align-items:center;
   z-index:999;
 }
+
 .overlay-frame{
+  padding:18px;
+  border-radius:24px;
   background:var(--glass);
-  backdrop-filter:blur(16px);
-  padding:20px;
-  border-radius:20px;
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
   border:1px solid var(--border);
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
 }
+
 .overlay-frame button{
   width:52px;
   height:52px;
   border-radius:50%;
-  margin:6px;
   font-size:18px;
-  font-weight:bold;
+  font-weight:800;
   border:none;
   color:white;
 }
@@ -171,7 +209,6 @@ button:active{transform:scale(.95)}
 <script>
 let con=0,cai=0;
 
-/* ==== CÔNG THỨC ==== */
 function f_ban1(x,y){return Math.round((-1747/7)+(4504/21)*x-(5/6)*y-(401/21)*x*x);}
 function f_banC01(x,y){return Math.round(x+Math.floor((200*y+2)/7));}
 function f_banC03(a,b){return Math.round(12.7*a*a+9.3*b*b-21.4*a*b+18.6*a+25.1*b+77);}
@@ -190,7 +227,6 @@ function calcVal(a,b,t){
   );
 }
 
-/* ==== OVERLAY CHỌN SỐ ==== */
 function pick(isCon){
   let o=document.createElement("div");
   o.className="overlay";
@@ -200,11 +236,11 @@ function pick(isCon){
   for(let i=0;i<10;i++){
     let b=document.createElement("button");
     b.textContent=i;
-    b.style.background=isCon?"#00a2ff":"#ff3b3b";
+    b.style.background=isCon?"#007aff":"#ff3b3b";
     b.onclick=()=>{
       if(isCon){con=i;btnCon.textContent="CON "+i;}
       else{cai=i;btnCai.textContent="CÁI "+i;}
-      document.body.removeChild(o);
+      o.remove();
     };
     f.appendChild(b);
   }
@@ -212,44 +248,26 @@ function pick(isCon){
   document.body.appendChild(o);
 }
 
-/* ==== HIỆU ỨNG CHẠY SỐ (NHƯ CŨ) ==== */
-function animateNumber(finalValue, callback){
-  let steps=12;
-  let count=0;
-  let timer=setInterval(()=>{
-    if(count<steps){
+function animateNumber(finalValue,cb){
+  let c=0;
+  let t=setInterval(()=>{
+    if(c<12){
       result.textContent=Math.floor(Math.random()*10000).toString().padStart(4,"0");
-      count++;
+      c++;
     }else{
-      clearInterval(timer);
-      reveal(finalValue,callback);
+      clearInterval(t);
+      result.textContent=finalValue;
+      cb();
     }
   },60);
 }
 
-function reveal(finalValue, callback){
-  let display=["_","_","_","_"];
-  let i=0;
-  function step(){
-    if(i<4){
-      display[i]=finalValue[i];
-      result.textContent=display.join("");
-      i++;
-      setTimeout(step,80);
-    }else callback();
-  }
-  step();
-}
-
-/* ==== CALC ==== */
 function calculate(){
-  let t=table.value;
-  let v=calcVal(con,cai,t);
+  let v=calcVal(con,cai,table.value);
   let even=v%2===0;
   let final=v.toString().padStart(4,"0");
 
   circle.textContent="?";
-  circle.style.background="#111";
   result.textContent="----";
 
   animateNumber(final,()=>{
@@ -258,12 +276,11 @@ function calculate(){
       ?"radial-gradient(circle,#00c6ff,#004b75)"
       :"radial-gradient(circle,#ff7676,#7a0000)";
     circle.style.boxShadow=even
-      ?"0 0 30px rgba(0,162,255,.8)"
-      :"0 0 30px rgba(255,59,59,.8)";
+      ?"0 0 34px rgba(0,162,255,.9)"
+      :"0 0 34px rgba(255,59,59,.9)";
   });
 }
 
-/* ==== EVENT ==== */
 btnCon.onclick=()=>pick(true);
 btnCai.onclick=()=>pick(false);
 calcBtn.onclick=calculate;
